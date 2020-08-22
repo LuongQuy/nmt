@@ -183,4 +183,12 @@ def create_attention_mechanism(attention_option, num_units, memory,
 
 
 def _create_attention_images_summary(final_context_state):
-  pass
+  """create attention image and attention summary."""
+  attention_images = (final_context_state.alignment_history.stack())
+  # Reshape to (batch, src_seq_len, tgt_seq_len,1)
+  attention_images = tf.expand_dims(
+      tf.transpose(attention_images, [1, 2, 0]), -1)
+  # Scale to range [0, 255]
+  attention_images *= 255
+  attention_summary = tf.summary.image("attention_images", attention_images)
+  return attention_summary
