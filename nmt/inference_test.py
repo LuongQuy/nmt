@@ -37,7 +37,7 @@ class InferenceTest(tf.test.TestCase):
   def _createTestInferCheckpoint(self, hparams, name):
     # Prepare
     hparams.vocab_prefix = (
-        "nmt/testdata/test_infer_vocab")
+        "testdata/test_infer_vocab")
     hparams.src_vocab_file = hparams.vocab_prefix + "." + hparams.src
     hparams.tgt_vocab_file = hparams.vocab_prefix + "." + hparams.tgt
     out_dir = os.path.join(tf.test.get_temp_dir(), name)
@@ -172,4 +172,4 @@ class InferenceTest(tf.test.TestCase):
 
 
 if __name__ == "__main__":
-  tf.test.main()
+  inference_test = InferenceTest()
