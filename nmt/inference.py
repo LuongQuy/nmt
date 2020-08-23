@@ -20,7 +20,7 @@ import codecs
 import time
 
 import tensorflow as tf
-import matplotlib
+import matplotlib.pyplot as plt
 
 from . import attention_model
 from . import gnmt_model
@@ -61,7 +61,7 @@ def _decode_inference_indices(model, sess, output_infer,
         utils.print_out("  save attention image to %s*" % image_file)
         image_summ = tf.Summary()
         image_summ.ParseFromString(infer_summary)
-        matplotlib.pyplot.imsave('quy_out.jpg', image_summ)
+        plt.imsave('quy_out.jpg', image_summ)
         with tf.gfile.GFile(image_file, mode="w") as img_f:
           img_f.write(image_summ.value[0].image.encoded_image_string)
 
